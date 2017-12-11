@@ -47,9 +47,9 @@ void		ft_treat_file(char *content, t_uint16 **ret, int i, int j)
 		a++;
 	}
 	j = 0;
-	while ((*ret)[j] & 34952)
+	while (((*ret)[j] & 34952) == 0)
 		*ret[j++] <<= 1;
 	j = 0;
-	while ((*ret)[j] & 61440)
+	while (((*ret)[j] & 61440) == 0)
 		*ret[j++] <<= 4;
 }
