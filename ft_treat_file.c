@@ -18,7 +18,7 @@ void		ft_treat_file(char *content, t_uint16 **ret, int i, int j)
 	int			n;
 	int			nb_return;
 
-	*ret = (t_uint16*)malloc(sizeof(**ret) * ((ft_strlen(content) + 1) / 21));
+	*ret = (t_uint16*)malloc(sizeof(**ret) * ((ft_strlen(content)) / 21));
 	ft_bzero(*ret, 26);
 	n = 15;
 	nb_return = 5;
@@ -40,10 +40,11 @@ void		ft_treat_file(char *content, t_uint16 **ret, int i, int j)
 		n--;
 		i++;
 	}
-	i = 0;
-	while (i < 4)
+	size_t a = 0;
+	while (a <= ft_strlen(content) / 21)
 	{
-		printf("ret[%d] = %u\n", i, (*ret)[i]);
-		i++;
+		printf("ret[%zu] = %u\n", a, (*ret)[a]);
+		a++;
 	}
+	while (
 }
