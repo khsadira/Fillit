@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/06 12:03:43 by schakor           #+#    #+#             */
-/*   Updated: 2017/12/11 16:23:15 by schakor          ###   ########.fr       */
+/*   Created: 2017/11/23 18:18:08 by schakor           #+#    #+#             */
+/*   Updated: 2017/12/11 12:34:26 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-t_uint16	*ft_read_file(char *file, int rd)
+#include <stdio.h>
+int		main(int ac, char **av)
 {
-	int			fd;
-	char		c[546];
-//	char		*content;
-	t_uint16	ret[26];
+	t_uint16	*ret;
 
-	if ((fd = open(file, O_RDONLY)) == -1)
+	if (ac != 2)
+		ft_putendl_fd("usage : ", 2);
+	ret = ft_read_file(av[1], 0);
+	int i = 0;
+	while (i < 4)
 	{
-		ft_putendl_fd("wrong input", 2);
-		exit(1);
+		printf("ret[%d] = %u\n", i, ret[i]);
+		i++;
 	}
-	rd = read(fd, c, 545);
-	if (rd == -1)
-	{
-		ft_putendl_fd("wrong input", 2);
-		exit(1);
-	}
-	if (rd > 545)
-	{
-		ft_putendl_fd("wrong input", 2);
-		exit(1);
-	}
-	c[rd] = '\0';
-//	content = ft_strdup(c);
-	return (ft_treat_file(c, ret, 0, 0));
+	return (0);
 }
