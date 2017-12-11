@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 12:03:43 by schakor           #+#    #+#             */
-/*   Updated: 2017/12/11 12:51:17 by khsadira         ###   ########.fr       */
+/*   Updated: 2017/12/11 16:20:36 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ t_uint16	*ft_read_file(char *file, int rd)
 //	char		*content;
 	t_uint16	ret[26];
 
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
+	if ((fd = open(file, O_RDONLY)) == -1)
 	{
 		ft_putendl_fd("wrong input", 2);
 		exit(1);
