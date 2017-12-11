@@ -6,25 +6,26 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 14:59:45 by schakor           #+#    #+#             */
-/*   Updated: 2017/12/11 16:20:45 by khsadira         ###   ########.fr       */
+/*   Updated: 2017/12/11 17:32:55 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
 
-t_uint16	*ft_treat_file(char *content, t_uint16 ret[26], int i, int j)
+void		ft_treat_file(char *content, t_uint16 **ret, int i, int j)
 {
 	int			n;
 	int			nb_return;
 
-	ft_bzero(ret, 26);
+	*ret = (t_uint16*)malloc(sizeof(**ret) * ((ft_strlen(content) + 1) / 21));
+	ft_bzero(*ret, 26);
 	n = 15;
 	nb_return = 5;
 	while (content[i])
 	{
 		if (content[i] == '#')
-			ret[j] |= 1 << n;
+			(*ret)[j] |= 1 << n;
 		else if (content[i] == '\n')
 		{
 			n++;
@@ -40,10 +41,9 @@ t_uint16	*ft_treat_file(char *content, t_uint16 ret[26], int i, int j)
 		i++;
 	}
 	i = 0;
-/*	while (i < 4)
+	while (i < 4)
 	{
-		printf("ret[%d] = %u\n", i, ret[i]);
+		printf("ret[%d] = %u\n", i, (*ret)[i]);
 		i++;
-	}*/
-	return (ret);
+	}
 }

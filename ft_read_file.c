@@ -6,18 +6,18 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 12:03:43 by schakor           #+#    #+#             */
-/*   Updated: 2017/12/11 16:23:15 by schakor          ###   ########.fr       */
+/*   Updated: 2017/12/11 17:24:54 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_uint16	*ft_read_file(char *file, int rd)
+char	*ft_read_file(char *file)
 {
+	int			rd;
 	int			fd;
 	char		c[546];
-//	char		*content;
-	t_uint16	ret[26];
+	char		*content;
 
 	if ((fd = open(file, O_RDONLY)) == -1)
 	{
@@ -36,6 +36,6 @@ t_uint16	*ft_read_file(char *file, int rd)
 		exit(1);
 	}
 	c[rd] = '\0';
-//	content = ft_strdup(c);
-	return (ft_treat_file(c, ret, 0, 0));
+	content = ft_strdup(c);
+	return (content);
 }
