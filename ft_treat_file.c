@@ -46,10 +46,16 @@ void		ft_treat_file(char *content, t_uint16 **ret, int i, int j)
 		printf("ret[%zu] = %u\n", a, (*ret)[a]);
 		a++;
 	}
-	j = 0;
-	while (((*ret)[j] & 34952) == 0)
-		*ret[j++] <<= 1;
-	j = 0;
-	while (((*ret)[j] & 61440) == 0)
-		*ret[j++] <<= 4;
+	a = 0;
+	while (a < ft_strlen(content) / 21)
+	{
+		printf("1 a = %zu\n", a);
+		while (((*ret)[a] & 34952) == 0)
+			*ret[a] <<= 1;
+		printf("2 a = %zu\n", a);
+		while (((*ret)[a] & 61440) == 0)
+			*ret[a] <<= 4;
+		printf("ret[%zu] = %u et a = %zu\n", a, (*ret[a]), a);
+		a++;
+	}
 }
