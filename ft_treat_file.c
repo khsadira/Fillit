@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 14:59:45 by schakor           #+#    #+#             */
-/*   Updated: 2017/12/11 17:32:55 by khsadira         ###   ########.fr       */
+/*   Updated: 2017/12/13 10:45:04 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,15 @@ void		ft_treat_file(char *content, t_uint16 **ret, int i, int j)
 		a++;
 	}
 	a = 0;
-	while (a < ft_strlen(content) / 21)
+	while (a <= ft_strlen(content) / 21)
 	{
-		printf("1 a = %zu\n", a);
+		printf("1 a = %zu ret[%zu] = %u\n", a, a, (*ret)[a]);
 		while (((*ret)[a] & 34952) == 0)
-			*ret[a] <<= 1;
+			(*ret)[a] <<= 1;
 		printf("2 a = %zu\n", a);
 		while (((*ret)[a] & 61440) == 0)
-			*ret[a] <<= 4;
-		printf("ret[%zu] = %u et a = %zu\n", a, (*ret[a]), a);
+			(*ret)[a] <<= 4;
+		printf("ret[%zu] = %u et a = %zu\n", a, (*ret)[a], a);
 		a++;
 	}
 }
