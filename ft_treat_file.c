@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 14:59:45 by schakor           #+#    #+#             */
-/*   Updated: 2017/12/13 10:45:04 by schakor          ###   ########.fr       */
+/*   Updated: 2017/12/13 12:26:36 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@ void		ft_treat_file(char *content, t_uint16 **ret, int i, int j)
 {
 	int			n;
 	int			nb_return;
+	int			nb_tetra;
 
-	*ret = (t_uint16*)malloc(sizeof(**ret) * ((ft_strlen(content)) / 21));
-	ft_bzero(*ret, 26);
+
+	nb_tetra = ft_strlen(content) / 21;
+	*ret = (t_uint16*)malloc(sizeof(**ret) * nb_tetra);
+	ft_bzero(*ret, 52);
 	n = 15;
 	nb_return = 5;
 	while (content[i])
@@ -40,22 +43,23 @@ void		ft_treat_file(char *content, t_uint16 **ret, int i, int j)
 		n--;
 		i++;
 	}
-	size_t a = 0;
-	while (a <= ft_strlen(content) / 21)
+	int	 a = 0;
+	while (a <= nb_tetra)
 	{
-		printf("ret[%zu] = %u\n", a, (*ret)[a]);
+		printf("ret[%d] = %u\n", a, (*ret)[a]);
 		a++;
 	}
 	a = 0;
-	while (a <= ft_strlen(content) / 21)
+	while (a <= nb_tetra)
 	{
-		printf("1 a = %zu ret[%zu] = %u\n", a, a, (*ret)[a]);
-		while (((*ret)[a] & 34952) == 0)
+		printf("1 a = %d ret[%d] = %u\n", a, a, (*ret)[a]);
+		while (((*ret)[a] & 0x8888) == 0)
 			(*ret)[a] <<= 1;
-		printf("2 a = %zu\n", a);
-		while (((*ret)[a] & 61440) == 0)
+		printf("2 a = %d\n", a);
+		while (((*ret)[a] & 0xf000) == 0)
 			(*ret)[a] <<= 4;
-		printf("ret[%zu] = %u et a = %zu\n", a, (*ret)[a], a);
+		printf("ret[%d] = %u et a = %d\n", a, (*ret)[a], a);
 		a++;
 	}
+	printf("%d\n", ft_check_tetra(*ret, nb_tetra));
 }

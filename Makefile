@@ -6,7 +6,7 @@
 #    By: schakor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/23 18:14:23 by schakor           #+#    #+#              #
-#    Updated: 2017/12/06 14:51:24 by schakor          ###   ########.fr        #
+#    Updated: 2017/12/13 12:25:45 by schakor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC		=	gcc
 
 CFLAGS	=	-Wall -Werror -Wextra
 
-SRC		=	main.c ft_read_file.c ft_treat_file.c
+SRC		=	main.c ft_read_file.c ft_treat_file.c ft_check_tetra.c
 
 OBJ		=	$(SRC:.c=.o)
 
