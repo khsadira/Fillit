@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 18:18:08 by schakor           #+#    #+#             */
-/*   Updated: 2017/12/13 12:24:20 by schakor          ###   ########.fr       */
+/*   Updated: 2017/12/13 13:33:04 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		main(int ac, char **av)
 	size_t i = 0;
 	while (i <= ft_strlen(content) / 21)
 	{
-		printf("ret[%zu] = %u\n", i, ret[i]);
+		printf("ret[%zu] = %#x\n", i, ret[i]);
 		i++;
 	}
 	return (0);
