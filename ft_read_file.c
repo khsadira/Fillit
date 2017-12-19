@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 12:03:43 by schakor           #+#    #+#             */
-/*   Updated: 2017/12/13 11:16:28 by schakor          ###   ########.fr       */
+/*   Updated: 2017/12/19 10:22:16 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_read_file(char *file)
 {
 	int			rd;
 	int			fd;
-	char		c[546];
+	char		buf[545];
 	char		*content;
 
 	if ((fd = open(file, O_RDONLY)) == -1)
@@ -24,7 +24,7 @@ char	*ft_read_file(char *file)
 		ft_putendl_fd("wrong input", 2);
 		exit(1);
 	}
-	rd = read(fd, c, 545);
+	rd = read(fd, buf, 545);
 	if (rd == -1)
 	{
 		ft_putendl_fd("wrong input", 2);
@@ -35,7 +35,7 @@ char	*ft_read_file(char *file)
 		ft_putendl_fd("wrong input", 2);
 		exit(1);
 	}
-	c[rd] = '\0';
-	content = ft_strdup(c);
+	buf[rd] = '\0';
+	content = ft_strdup(buf);
 	return (content);
 }
