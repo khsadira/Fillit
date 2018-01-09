@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 12:03:43 by schakor           #+#    #+#             */
-/*   Updated: 2017/12/19 10:22:16 by schakor          ###   ########.fr       */
+/*   Updated: 2018/01/09 11:42:10 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,7 @@ char	*ft_read_file(char *file)
 		exit(1);
 	}
 	rd = read(fd, buf, 545);
-	if (rd == -1)
-	{
-		ft_putendl_fd("wrong input", 2);
-		exit(1);
-	}
-	if (rd > 545)
+	if (rd == -1 || rd > 545)
 	{
 		ft_putendl_fd("wrong input", 2);
 		exit(1);

@@ -6,12 +6,11 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 18:18:08 by schakor           #+#    #+#             */
-/*   Updated: 2017/12/13 14:44:10 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/01/09 13:46:48 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
 int		main(int ac, char **av)
 {
@@ -28,5 +27,6 @@ int		main(int ac, char **av)
 		printf("ret[%zu] = %#x\n", i, ret[i]);
 		i++;
 	}
+	ft_solve(ret, ft_strlen(content) / 21);
 	return (0);
 }
