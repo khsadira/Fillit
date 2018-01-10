@@ -6,13 +6,13 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:16:24 by schakor           #+#    #+#             */
-/*   Updated: 2018/01/10 16:44:34 by schakor          ###   ########.fr       */
+/*   Updated: 2018/01/10 17:33:28 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static int  ft_is_placable(t_uint16 tetra, t_uint16 **cpy, int n)
+static int  ft_is_placable(t_uint16 tetra, t_uint16 *cpy, int n)
 {
 	int     line;
 	int     col;
@@ -23,10 +23,10 @@ static int  ft_is_placable(t_uint16 tetra, t_uint16 **cpy, int n)
 		col = 0;
 		while (col < n)
 		{
-			if (((((tetra & 0xF000) >> col) & (*cpy)[line]) == 0) &&
-					(((((tetra << 4) & 0xF000) >> col) & (*cpy)[line + 1]) == 0) &&
-					(((((tetra << 8) & 0xF000) >> col) & (*cpy)[line + 2]) == 0) &&
-					(((((tetra << 12) & 0xF000) >> col) & (*cpy)[line + 3]) == 0))
+			if (((((tetra & 0xF000) >> col) & (cpy)[line]) == 0) &&
+					(((((tetra << 4) & 0xF000) >> col) & (cpy)[line + 1]) == 0) &&
+					(((((tetra << 8) & 0xF000) >> col) & (cpy)[line + 2]) == 0) &&
+					(((((tetra << 12) & 0xF000) >> col) & (cpy)[line + 3]) == 0))
 				return (line * 16 + col);
 			col++;
 		}
@@ -35,32 +35,53 @@ static int  ft_is_placable(t_uint16 tetra, t_uint16 **cpy, int n)
 	return (-1);
 }
 
-void	ft_create_border(t_uint16 **map, int n)
+static void	ft_create_border(t_uint16 *map, int n)
 {
 	int		i;
 
 	i = 0;
 	while (i < n)
-		(*map)[i++] |= 1 << (15 - n);
-	(*map)[i] = 0xFFFF;
+		(map)[i++] |= 1 << (15 - n);
+	(map)[i] = 0xFFFF;
 }
 
-void	ft_delete_border(t_uint16 **map, int n)
+static void	ft_delete_border(t_uint16 *map, int n)
 {
 	int		i;
 
 	i = 0;
 	while (i < n)
-		(*map)[i++] ^= 1 << (15 - n);
-	(*map)[i] = 0x0000;
+		(map)[i++] ^= 1 << (15 - n);
+	(map)[i] = 0x0000;
 }
 
-void	ft_place(t_uint16 tetra, t_uint16 **map, int row, int col)
+static void	ft_place(t_uint16 tetra, t_uint16 *map, int row, int col)
 {
-	(*map)[row] ^= (tetra & 0xF000) >> col;
-	(*map)[row + 1] ^= ((tetra << 4) & 0xF000) >> col;
-	(*map)[row + 2] ^= ((tetra << 8) & 0xF000) >> col;
-	(*map)[row + 3] ^= ((tetra << 12) & 0xF000) >> col;
+	(map)[row] ^= (tetra & 0xF000) >> col;
+	(map)[row + 1] ^= ((tetra << 4) & 0xF000) >> col;
+	(map)[row + 2] ^= ((tetra << 8) & 0xF000) >> col;
+	(map)[row + 3] ^= ((tetra << 12) & 0xF000) >> col;
+}
+
+void	ft_solve(t_uint16 *map, t_uint16 *tetra, int nb_tetra)
+{
+	int		i;
+	int		square;
+	int		position;
+
+	square = 0;
+	i = 0;
+	while (i < nb_tetra)
+	{
+		if ((position = ft_is_placable(tetra[i], map, square)) != -1)
+			ft_place(tetra[i++], map, position / 16, position % 16);
+		else
+		{
+			ft_delete_border(map, square);
+			square++;
+			ft_create_border(map, square);
+		}
+	}
 }
 
 void	ft_print_bits(t_uint16 nb)
@@ -93,15 +114,23 @@ void	ft_print_map(t_uint16 *map)
 
 int		main(void)
 {
+	t_uint16	*tetra;
 	t_uint16	*map;
 	int			i;
-
+	
 	if (!(map = (t_uint16 *)malloc(sizeof(*map) * 16)))
 		return (0);
+	if (!(tetra = (t_uint16 *)malloc(sizeof(*tetra) * 5)))
+		return (0);
+	tetra[0] = 0xF000;
+	tetra[1] = 0xF000;
+	tetra[2] = 0x8888;
+	tetra[3] = 0x88c0;
+	tetra[4] = 0x4e00;
 	i = 0;
 	while (i < 16)
 		map[i++] = 0;
-	ft_create_border(&map, 5);
+	/*ft_create_border(&map, 5);
 	ft_place(0xF000, &map, 0, 0);
 	ft_place(0xF000, &map, 1, 0);
 	ft_place(0x8888, &map, 0, 4);
@@ -112,7 +141,8 @@ int		main(void)
 
 	ft_place(0x6C00, &map, 33/16, 33%16);
 	ft_print_map(map);
-	printf("\n\n");
+	printf("\n\n");*/
+	ft_solve(map, tetra, 5);
 	ft_print_map(map);
 	return (0);
 }
