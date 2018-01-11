@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 15:30:57 by khsadira          #+#    #+#             */
-/*   Updated: 2017/12/01 12:59:41 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/01/11 17:08:58 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char const *s, int fd);
 void			ft_putendl_fd(char const *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
+int				ft_sqrt(int n);
 typedef struct	s_list
 {
 	void			*content;

@@ -6,7 +6,7 @@
 #    By: khsadira <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/23 12:20:33 by khsadira          #+#    #+#              #
-#    Updated: 2017/12/01 12:13:55 by khsadira         ###   ########.fr        #
+#    Updated: 2018/01/11 17:09:15 by schakor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRCS = ft_memccpy.c	ft_putnbr.c	ft_strequ.c	ft_strnequ.c\
 	ft_abs.c ft_swap.c ft_sort_integer_table.c ft_isspace.c ft_isnum.c\
 	ft_isupper.c ft_islower.c ft_strcapitalize.c ft_strupcase.c\
 	ft_strlowcase.c ft_isnum.c ft_strrev.c ft_is_prime.c\
-	ft_find_next_prime.c
+	ft_find_next_prime.c ft_sqrt.c
 OBJ = $(SRCS:.c=.o)
 FLAG = -Wall -Wextra -Werror
 
