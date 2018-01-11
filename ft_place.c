@@ -6,13 +6,13 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:16:24 by schakor           #+#    #+#             */
-/*   Updated: 2018/01/10 17:33:28 by schakor          ###   ########.fr       */
+/*   Updated: 2018/01/11 11:40:21 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static int  ft_is_placable(t_uint16 tetra, t_uint16 *cpy, int n)
+static int  ft_is_placable(t_uint16 tetra, t_uint16 *map, int n)
 {
 	int     line;
 	int     col;
@@ -23,10 +23,10 @@ static int  ft_is_placable(t_uint16 tetra, t_uint16 *cpy, int n)
 		col = 0;
 		while (col < n)
 		{
-			if (((((tetra & 0xF000) >> col) & (cpy)[line]) == 0) &&
-					(((((tetra << 4) & 0xF000) >> col) & (cpy)[line + 1]) == 0) &&
-					(((((tetra << 8) & 0xF000) >> col) & (cpy)[line + 2]) == 0) &&
-					(((((tetra << 12) & 0xF000) >> col) & (cpy)[line + 3]) == 0))
+			if (((((tetra & 0xF000) >> col) & (map)[line]) == 0) &&
+					(((((tetra << 4) & 0xF000) >> col) & (map)[line + 1]) == 0) &&
+					(((((tetra << 8) & 0xF000) >> col) & (map)[line + 2]) == 0) &&
+					(((((tetra << 12) & 0xF000) >> col) & (map)[line + 3]) == 0))
 				return (line * 16 + col);
 			col++;
 		}
@@ -71,6 +71,9 @@ void	ft_solve(t_uint16 *map, t_uint16 *tetra, int nb_tetra)
 
 	square = 0;
 	i = 0;
+	while (i < 16)
+		(map)[i++] = 0;
+	i = 0;
 	while (i < nb_tetra)
 	{
 		if ((position = ft_is_placable(tetra[i], map, square)) != -1)
@@ -82,8 +85,11 @@ void	ft_solve(t_uint16 *map, t_uint16 *tetra, int nb_tetra)
 			ft_create_border(map, square);
 		}
 	}
+	ft_putstr("Nous avons un carre de : ");
+	ft_putnbr(square);
+	ft_putchar(10);
 }
-
+/*
 void	ft_print_bits(t_uint16 nb)
 {
 	int			n;
@@ -130,7 +136,7 @@ int		main(void)
 	i = 0;
 	while (i < 16)
 		map[i++] = 0;
-	/*ft_create_border(&map, 5);
+	ft_create_border(&map, 5);
 	ft_place(0xF000, &map, 0, 0);
 	ft_place(0xF000, &map, 1, 0);
 	ft_place(0x8888, &map, 0, 4);
@@ -141,8 +147,8 @@ int		main(void)
 
 	ft_place(0x6C00, &map, 33/16, 33%16);
 	ft_print_map(map);
-	printf("\n\n");*/
+	printf("\n\n");
 	ft_solve(map, tetra, 5);
 	ft_print_map(map);
 	return (0);
-}
+}*/

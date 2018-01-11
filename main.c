@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 18:18:08 by schakor           #+#    #+#             */
-/*   Updated: 2018/01/09 13:46:48 by schakor          ###   ########.fr       */
+/*   Updated: 2018/01/11 14:44:57 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 int		main(int ac, char **av)
 {
+	t_uint16	*map;
 	t_uint16	*ret;
 	char		*content;
-
+	
+	if (!(map = (t_uint16 *)malloc(sizeof(*map) * 16)))
+		return (0);
 	if (ac != 2)
 		ft_putendl_fd("usage : ", 2);
 	content = ft_read_file(av[1]);
@@ -27,6 +30,7 @@ int		main(int ac, char **av)
 		printf("ret[%zu] = %#x\n", i, ret[i]);
 		i++;
 	}
-	ft_solve(ret, ft_strlen(content) / 21);
+	ft_solve(map , ret, ft_strlen(content) / 21 + 1);
+	ft_print_map(map);
 	return (0);
 }
