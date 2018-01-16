@@ -85,12 +85,14 @@ void	ft_solve(t_uint16 *map, t_uint16 *tetra, int nb_tetra)
 		if ((position) == -1 && i == 0)
 		{
 			printf("square = %d\n", square);
-			ft_delete_border(map, square);
+			while (i < 16)
+				map[i++] = 0;
+			i = 0;
 			square++;
 			ft_create_border(map, square);
 			position = 0;
 		}
-		else if (position == - 1)
+		else if (position == -1)
 		{
 			printf("i = %d, position = %d\n", i, position);
 			i--;
@@ -103,6 +105,7 @@ void	ft_solve(t_uint16 *map, t_uint16 *tetra, int nb_tetra)
 			ft_place(tetra[i], map, position / 16, position % 16);
 			i++;
 			bposition = position;
+			position = 0;
 		}
 	}
 	printf("\nnb tetra = %d\n",nb_tetra);
