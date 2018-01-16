@@ -16,7 +16,7 @@ CC		=	gcc
 
 CFLAGS	=	#-Wall -Werror -Wextra
 
-SRC		=	main.c ft_read_file.c ft_treat_file.c ft_check_tetra.c ft_place.c ft_print_map.c
+SRC		=	main.c ft_read_file.c ft_treat_file.c ft_check_tetra.c ft_place_backtrack.c ft_print_map.c
 
 OBJ		=	$(SRC:.c=.o)
 
