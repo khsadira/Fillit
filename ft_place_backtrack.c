@@ -70,7 +70,7 @@ void	ft_solve(t_uint16 *map, t_uint16 *tetra, int nb_tetra)
 	int		position;
 	int		bposition;
 
-	square = ft_sqrt(2*2*nb_tetra);;
+	square = ft_sqrt(nb_tetra*2*2);
 	position = 0;
 	i = 0;
 	while (i < 16)
@@ -89,24 +89,23 @@ void	ft_solve(t_uint16 *map, t_uint16 *tetra, int nb_tetra)
 			square++;
 			ft_create_border(map, square);
 			position = 0;
-			position = ft_is_placable(tetra[i], map, square, position);
 		}
-		if ((position) != -1)
-		{
-			printf("position = %d\n", position);
-			ft_place(tetra[i++], map, position / 16, position % 16);
-			bposition = position;
-		}
-		else if (i == 0)
-			;
-		else
+		else if (position == - 1)
 		{
 			printf("i = %d, position = %d\n", i, position);
 			i--;
 			ft_place(tetra[i], map, bposition / 16, bposition % 16);
 			position = bposition + 1;
 		}
+		else if ((position) != -1)
+		{
+			printf("position = %d\n", position);
+			ft_place(tetra[i], map, position / 16, position % 16);
+			i++;
+			bposition = position;
+		}
 	}
+	printf("\nnb tetra = %d\n",nb_tetra);
 	ft_putstr("Nous avons un carre de : ");
 	ft_putnbr(square);
 	ft_putchar(10);
