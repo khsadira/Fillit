@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:16:24 by schakor           #+#    #+#             */
-/*   Updated: 2018/01/24 15:31:57 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/01/24 15:38:44 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_solve(t_uint16 *map, t_uint16 *tetra, int nb_tetra)
 	int		position[26];
 
 	printf("nombre de tetra = %d\n", nb_tetra);
-	square = ft_sqrt(nb_tetra*2*3);
+	square = ft_sqrt(nb_tetra*4);
 	i = 0;
 	while (i < 26)
 		position[i++] = 0;
