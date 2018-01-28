@@ -54,6 +54,77 @@ static void	ft_place(t_uint16 tetra, t_uint16 *map, int row, int col)
 	(map)[row + 3] ^= ((tetra << 12) & 0xF000) >> col;
 }
 
+static void	ft_characterize_map(int nb_tetra, int position[26], t_uint16 *tetra, int square)
+{
+	int	i;
+	int	a;
+	char	*alphabet_map;
+	char	c;
+	int	suite;
+
+	alphabet_map = (char*)malloc(sizeof(char) * (square * square + square));
+	i = 0;
+	c = 'A';
+	while (i < square * square + square)
+		alphabet_map[i++] = '.';
+	i = square;
+	while (i < square * square + square)
+	{
+		alphabet_map[i] = '\n';
+		i += square + 1;
+	}
+	ft_putstr(alphabet_map);
+	ft_putchar(10);
+	i = 0;
+	while (i < nb_tetra)
+	{
+		suite = 15;
+		a = (position[i] / 16 * square) + (position[i] % 16) + position[i] / 16;
+		printf("a = %d || position[%d] = %d\n",a,i,position[i]);
+		while (suite >= 0)
+		{
+			if (suite != 15 && suite % 4 == 3)
+				a += 1;
+			if ((tetra[i] >> suite & 1) == 1)
+				alphabet_map[a] = c;
+			a++;
+			suite--;
+		}
+		i++;
+		c++;
+	}
+	ft_putstr(alphabet_map);
+	ft_putchar(10);
+}
+
+static int	ft_minimal_map(int nb_tetra, t_uint16 *tetra)
+{
+	int	i;
+	int	square;
+	int	taille_tetra[3];
+	
+	square = 0;
+	i = 0;
+	while (i < nb_tetra)
+	{
+		if (tetra[i] == 0xcc00)
+			square += 4;
+		else
+			square += 5;
+		i++;
+	}
+	return (square);
+}
+
+static void	ft_reset_map(t_uint16 *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < 16)
+		map[i++] = 0;
+}
+
 void	ft_solve(t_uint16 *map, t_uint16 *tetra, int nb_tetra)
 {
 	int		i;
@@ -61,13 +132,15 @@ void	ft_solve(t_uint16 *map, t_uint16 *tetra, int nb_tetra)
 	int		position[26];
 
 	printf("nombre de tetra = %d\n", nb_tetra);
-	square = ft_sqrt(nb_tetra*4);
+	square = ft_sqrt(nb_tetra*5);
+	ft_putchar(10);
+	ft_putstr("On commence avec un square de : ");
+	ft_putnbr(square);
+	ft_putchar(10);
 	i = 0;
 	while (i < 26)
 		position[i++] = 0;
-	i = 0;
-	while (i < 16)
-		map[i++] = 0;
+	ft_reset_map(map);
 	i = 0;
 	ft_create_border(map, square);
 	while (i < nb_tetra)
@@ -77,12 +150,9 @@ void	ft_solve(t_uint16 *map, t_uint16 *tetra, int nb_tetra)
 		{
 			if (i == 0)
 			{
-				while (i < 16)
-					map[i++] = 0;
-				i = 0;
-				square++;
+				ft_reset_map(map);
 				printf("square = %d\n", square);
-				ft_create_border(map, square);
+				ft_create_border(map, ++square);
 				while (i < 26)
 					position[i++] = 0;
 				i = 0;
@@ -90,20 +160,24 @@ void	ft_solve(t_uint16 *map, t_uint16 *tetra, int nb_tetra)
 			else
 			{
 				i--;
-				ft_place(tetra[i], map, position[i] / 16, position[i] % 16);
-				position[i]++;
+				ft_place(tetra[i], map, position[i] / 16, position[i]++ % 16);
 			}
 		}
 		else
 		{
 			ft_place(tetra[i], map, position[i] / 16, position[i] % 16);
-			if (i == 4)
+			if (i == 1)
 			{
 				ft_print_map(map);
 				ft_putchar(10);
 			}
-			i++;
-			position[i] = 0;
+			position[++i] = 0;
 		}
 	}
+	ft_putchar(10);
+	ft_putstr("Nous avons : ");
+	ft_putnbr(square);
+	ft_putchar(10);
+	ft_print_map(map);
+	ft_characterize_map(nb_tetra, position, tetra, square);
 }
