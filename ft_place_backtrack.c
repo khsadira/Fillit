@@ -62,7 +62,7 @@ static void	ft_characterize_map(int nb_tetra, int position[26], t_uint16 *tetra,
 	char	c;
 	int	suite;
 
-	alphabet_map = (char*)malloc(sizeof(char) * (square * square + square));
+	alphabet_map = (char*)malloc(sizeof(*alphabet_map) * (square * square + square));
 	i = 0;
 	c = 'A';
 	while (i < square * square + square)
@@ -73,6 +73,7 @@ static void	ft_characterize_map(int nb_tetra, int position[26], t_uint16 *tetra,
 		alphabet_map[i] = '\n';
 		i += square + 1;
 	}
+	ft_putchar(10);
 	ft_putstr(alphabet_map);
 	ft_putchar(10);
 	i = 0;
@@ -80,12 +81,11 @@ static void	ft_characterize_map(int nb_tetra, int position[26], t_uint16 *tetra,
 	{
 		suite = 15;
 		a = (position[i] / 16 * square) + (position[i] % 16) + position[i] / 16;
-		printf("a = %d || position[%d] = %d\n",a,i,position[i]);
 		while (suite >= 0)
 		{
 			if (suite != 15 && suite % 4 == 3)
 				a += 1;
-			if ((tetra[i] >> suite & 1) == 1)
+			if ((tetra[i] >> suite & 1))
 				alphabet_map[a] = c;
 			a++;
 			suite--;
@@ -93,6 +93,7 @@ static void	ft_characterize_map(int nb_tetra, int position[26], t_uint16 *tetra,
 		i++;
 		c++;
 	}
+	ft_putchar(10);
 	ft_putstr(alphabet_map);
 	ft_putchar(10);
 }
