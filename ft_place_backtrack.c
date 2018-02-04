@@ -59,12 +59,12 @@ static void	ft_characterize_map(int nb_tetra, int position[26], t_uint16 *tetra,
 	int	i;
 	int	a;
 	char	*alphabet_map;
-	char	c;
 	int	suite;
+	int	count;
+	int	j;
 
-	alphabet_map = (char*)malloc(sizeof(*alphabet_map) * (square * square + square));
+	alphabet_map = (char*)malloc(sizeof(*alphabet_map) * (square * square + square) * square * square);
 	i = 0;
-	c = 'A';
 	while (i < square * square + square)
 		alphabet_map[i++] = '.';
 	i = square;
@@ -80,19 +80,44 @@ static void	ft_characterize_map(int nb_tetra, int position[26], t_uint16 *tetra,
 	while (i < nb_tetra)
 	{
 		suite = 15;
+		j = 0;
+		while (suite >= 0)
+		{
+			a = (position[i] / 16 * square) + (position[i] % 16) + position[i] / 16 + ((j * square) + j);
+			count = 0;
+			while (count < 4)
+			{
+				if ((tetra[i] >> suite & 1))
+					alphabet_map[a] = 'A' + i;
+				count++;
+				a++;
+				suite--;
+			}
+			j++;
+		}
+		i++;
+	}
+/*	while (i < 2)
+	{
+		suite = 15;
 		a = (position[i] / 16 * square) + (position[i] % 16) + position[i] / 16;
 		while (suite >= 0)
 		{
-			if (suite != 15 && suite % 4 == 3)
-				a += 1;
+			if (alphabet_map[a] == '\n' || (suite != 15 && suite % 4 == 3))
+			{
+				a = (position[i] / 16 * square) + (position[i] % 16) + position[i] / 16 + square + 1;
+				suite -= suite % 4 + 1; 
+			}
+		//	if (suite != 15 && suite % 4 == 3)
+		//		a += 1;
 			if ((tetra[i] >> suite & 1))
-				alphabet_map[a] = c;
+				alphabet_map[a] = 'A' + i;
+			printf("suite = %d ||| a = %d\n",suite,a);
 			a++;
 			suite--;
 		}
 		i++;
-		c++;
-	}
+	}*/
 	ft_putchar(10);
 	ft_putstr(alphabet_map);
 	ft_putchar(10);
