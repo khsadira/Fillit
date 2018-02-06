@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:16:24 by schakor           #+#    #+#             */
-/*   Updated: 2018/02/06 14:12:01 by schakor          ###   ########.fr       */
+/*   Updated: 2018/02/06 16:38:17 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void			ft_solve(t_uint16 *map, t_uint16 *tetra, int nb_tetra)
 	{
 		position[i] = ft_is_placable(tetra[i], map, square, position[i]);
 		if (position[i] == -1 && i == 0)
-			ft_reduce(map, position, square);
+			ft_reduce(map, position, ++square);
 		else if (position[i] == -1)
 		{
 			i--;

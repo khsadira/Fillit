@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 14:59:45 by schakor           #+#    #+#             */
-/*   Updated: 2018/02/06 13:08:27 by schakor          ###   ########.fr       */
+/*   Updated: 2018/02/06 17:30:23 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,17 @@ static void	ft_replace_tetra(t_uint16 **ret, int nb_tetra)
 	int	a;
 
 	a = 0;
-	while (a <= nb_tetra)
+	while (a < nb_tetra)
+	{
+		if ((*ret)[a] == 0)
+		{
+			ft_putendl_fd("error", 1);
+			exit(1);
+		}
+		a++;
+	}
+	a = 0;
+	while (a < nb_tetra)
 	{
 		while (((*ret)[a] & 0x8888) == 0)
 			(*ret)[a] <<= 1;
@@ -28,16 +38,44 @@ static void	ft_replace_tetra(t_uint16 **ret, int nb_tetra)
 	}
 }
 
+static void	ft_check_file(char *cont)
+{
+	int		i;
+	int		count;
+
+	count = 0;
+	i = 0;
+	while (cont[i])
+	{
+		if (cont[i] == '\n')
+		{
+			count++;
+			if (count == 4 && (cont[i + 1] == '\n' || cont[i + 1] == '\0'))
+			{
+				i += 2;
+				count = 0;
+			}
+			else if (count == 4)
+				ft_print_err();
+			else
+				i++;
+		}
+		else if (cont[i] == '.' || cont[i] == '#')
+			i++;
+		else
+			ft_print_err();
+	}
+}
+
 void		ft_treat_file(char *content, t_uint16 **ret)
 {
 	int			n;
-	int			nb_tetra;
 	int			i;
 	int			j;
 
 	i = 0;
 	j = 0;
-	nb_tetra = ft_strlen(content) / 21;
+	ft_check_file(content);
 	*ret = (t_uint16 *)ft_memalloc(52);
 	n = 15;
 	while (content[i])
@@ -54,5 +92,5 @@ void		ft_treat_file(char *content, t_uint16 **ret)
 		n--;
 		i++;
 	}
-	ft_replace_tetra(ret, nb_tetra);
+	ft_replace_tetra(ret, (ft_strlen(content) + 1) / 21);
 }

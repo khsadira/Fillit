@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 18:18:38 by schakor           #+#    #+#             */
-/*   Updated: 2018/02/06 14:18:21 by schakor          ###   ########.fr       */
+/*   Updated: 2018/02/06 17:21:58 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "./libft/libft.h"
-# include <stdio.h>
 
 typedef unsigned short int	t_uint16;
 
@@ -28,5 +27,5 @@ void		ft_characterize_map(int nb_tetra, int position[26],
 								t_uint16 *tetra, int square);
 void		ft_reset_tuint16(t_uint16 *map);
 void		ft_reset_int(int *pos);
-
+void		ft_print_err(void);
 #endif

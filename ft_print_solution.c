@@ -6,21 +6,20 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 10:06:20 by schakor           #+#    #+#             */
-/*   Updated: 2018/02/06 12:24:36 by schakor          ###   ########.fr       */
+/*   Updated: 2018/02/06 17:20:17 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static void	ft_map_init(int nb_tetra, char **alphabet_map, t_uint16 *tetra,
-						int square)
+static void	ft_map_init(char **alphabet_map, int square)
 {
 	int	i;
 
 	if (!(*alphabet_map = (char*)malloc(sizeof(**alphabet_map) * (square *
 						square + square))))
 	{
-		ft_putendl_fd("error.", 2);
+		ft_putendl_fd("error", 1);
 		exit(1);
 	}
 	i = 0;
@@ -40,7 +39,7 @@ void		ft_characterize_map(int nb_tetra, int position[26],
 	int		tab[5];
 	char	*alphabet_map;
 
-	ft_map_init(nb_tetra, &alphabet_map, tetra, square);
+	ft_map_init(&alphabet_map, square);
 	tab[0] = -1;
 	while (tab[0]++ < nb_tetra)
 	{
