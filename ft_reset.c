@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_reset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/06 12:03:43 by schakor           #+#    #+#             */
-/*   Updated: 2018/01/24 14:07:44 by schakor          ###   ########.fr       */
+/*   Created: 2018/02/06 12:38:08 by schakor           #+#    #+#             */
+/*   Updated: 2018/02/06 13:06:10 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	*ft_read_file(char *file)
+void	ft_reset_tuint16(t_uint16 *map)
 {
-	int			rd;
-	int			fd;
-	char		buf[545];
-	char		*content;
+	int		i;
 
-	if ((fd = open(file, O_RDONLY)) == -1)
-	{
-		ft_putendl_fd("wrong input", 2);
-		exit(1);
-	}
-	rd = read(fd, buf, 545);
-	if (rd == -1 || rd > 545)
-	{
-		ft_putendl_fd("wrong input", 2);
-		exit(1);
-	}
-	buf[rd] = '\0';
-	content = ft_strdup(buf);
-	return (content);
+	i = 0;
+	while (i < 16)
+		map[i++] = 0;
+}
+
+void	ft_reset_int(int *pos)
+{
+	int		i;
+
+	i = 0;
+	while (i < 26)
+		pos[i++] = 0;
 }
