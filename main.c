@@ -39,5 +39,8 @@ int		main(int ac, char **av)
 		return (0);
 	}
 	ft_solve(map, ret, (ft_strlen(content) + 1) / 21);
+	free (ret);
+	free (content);	
+	free (map);
 	return (0);
 }

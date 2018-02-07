@@ -60,4 +60,5 @@ void		ft_characterize_map(int nb_tetra, int position[26],
 		}
 	}
 	ft_putstr(alphabet_map);
+	free (alphabet_map);
 }
