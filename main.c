@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 18:18:08 by schakor           #+#    #+#             */
-/*   Updated: 2018/02/06 17:22:03 by schakor          ###   ########.fr       */
+/*   Updated: 2018/03/15 15:00:55 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int		main(int ac, char **av)
 		return (0);
 	}
 	ft_solve(map, ret, (ft_strlen(content) + 1) / 21);
-	free (ret);
-	free (content);	
-	free (map);
+	free(ret);
+	free(content);
+	free(map);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 10:06:20 by schakor           #+#    #+#             */
-/*   Updated: 2018/02/06 17:20:17 by schakor          ###   ########.fr       */
+/*   Updated: 2018/03/15 15:00:03 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,5 @@ void		ft_characterize_map(int nb_tetra, int position[26],
 		}
 	}
 	ft_putstr(alphabet_map);
-	free (alphabet_map);
+	free(alphabet_map);
 }
