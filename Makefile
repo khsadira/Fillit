@@ -6,7 +6,7 @@
 #    By: schakor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/23 18:14:23 by schakor           #+#    #+#              #
-#    Updated: 2018/02/06 17:16:09 by schakor          ###   ########.fr        #
+#    Updated: 2018/03/15 15:09:07 by khsadira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,11 +28,11 @@ $(NAME) : $(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) libft/libft.a
 
 clean : 
-	$(RM) $(OBJ)
+	rm -rf $(OBJ)
 	make -C libft clean
 
 fclean : clean
-	$(RM) $(NAME)
+	rm -rf $(NAME)
 	make -C libft fclean
 
 re : fclean all
