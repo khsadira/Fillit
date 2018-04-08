@@ -6,12 +6,11 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 14:59:45 by schakor           #+#    #+#             */
-/*   Updated: 2018/02/06 17:30:23 by schakor          ###   ########.fr       */
+/*   Updated: 2018/04/08 16:26:47 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
 static void	ft_replace_tetra(t_uint16 **ret, int nb_tetra)
 {

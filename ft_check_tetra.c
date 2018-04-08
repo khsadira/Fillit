@@ -6,12 +6,11 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 11:17:34 by schakor           #+#    #+#             */
-/*   Updated: 2018/02/06 14:56:28 by schakor          ###   ########.fr       */
+/*   Updated: 2018/04/08 16:26:17 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
 int	ft_check_tetra(t_uint16 *tetra, int nb_tetra)
 {
